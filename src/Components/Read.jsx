@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Read() {
     const [data, setData] = useState([]);
+    const [tabledark,setTableDark]=useState("");
 
     useEffect(() => {
         getData();
@@ -51,13 +52,31 @@ function Read() {
         localStorage.setItem("email",email);
 
     }
+    
 
 
 
     return (
-        <div>
+            <div>
+                <div className="form-check form-switch ">
+                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={()=>
+                {if(tabledark==="table-dark")
+                {
+                    setTableDark("");
+                }
+                else
+                {
+                    setTableDark("table-dark");
+                }}}/> 
+            </div>
+            <div className='d-flex justify-content-between m2 '>
             <h2>Read Operation</h2>
-            <table className="table">
+            
+            <Link to="/create">
+            <button className='btn btn-primary '>Create</button>
+            </Link>
+            </div>
+            <table className={`table ${tabledark}`}>
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -72,12 +91,12 @@ function Read() {
                             <td>{eachData.id}</td>
                             <td>{eachData.name}</td>
                             <td>{eachData.email}</td>
-                            <td>
-                                <Link to="/update"><button className="btn btn-success" onClick={()=>setLocalStroage(eachData.id,eachData.name,eachData.email)}>Edit</button></Link>
-                           
-                            </td>
-                            <td>
-                            <button className="btn btn-danger" onClick={()=>
+                            <td >
+                                <Link to="/update">
+                                    <button className="btn btn-success" onClick={()=>setLocalStroage(eachData.id,eachData.name,eachData.email)}>Edit</button>
+                                 </Link>
+                                &nbsp;&nbsp;
+                            <button className="btn btn-danger " onClick={()=>
                             {handleDelete(eachData.id)}}>Delete</button>
                             </td>
                             

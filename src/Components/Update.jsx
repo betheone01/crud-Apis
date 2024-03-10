@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 function Update() {
@@ -37,6 +37,9 @@ function Update() {
 
   return (
     <>
+    <div>
+    <h1>Update</h1>
+    </div>
     <form>
             <div className="mb-3">
             <label className="form-label">Name</label>
@@ -54,9 +57,14 @@ function Update() {
             {/* {name}
             {email} */}
         
-        <button type="submit" className="btn btn-primary"
+        <div className='d-flex '>
+        <button type="submit" className="btn btn-primary mx-2"
          onClick={handleUpdate}
         >Update</button>
+        <Link to={"/read"}>
+         <button className='btn btn-secondary  mx-2'>Back</button>
+         </Link>
+         </div>
         </form> 
         </>
   )
